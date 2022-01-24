@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Welcome from '../views/welcome.vue'
+import Addtrip from '../views/addtrip.vue'
 
 Vue.use(VueRouter)
 
@@ -23,6 +24,11 @@ const routes = [
     path: '/welcome', 
     name: 'Welcome', 
     component: Welcome
+  }, 
+  {
+    path: '/addtrip', 
+    name: 'Addtrip', 
+    component: Addtrip
   }
 ]
 

@@ -6,7 +6,7 @@
       <v-app-bar app>
         <v-tabs>
           <v-tab to="/welcome">Welcome</v-tab>
-          <v-tab to="/about">Add Trip</v-tab>
+          <v-tab to="/addtrip">Add Trip</v-tab>
           <v-tab>View</v-tab>
         </v-tabs>
       </v-app-bar>
