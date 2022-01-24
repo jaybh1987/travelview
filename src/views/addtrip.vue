@@ -14,7 +14,7 @@
     required
     ></v-select> 
     
-
+<!-- start date component starts -->
 <v-layout>
   <v-menu
   v-model="startDate"
@@ -45,70 +45,134 @@
   </v-menu>
 </v-layout>
 
-<!-- <v-layout>
-  <v-menu
-  v-model="startDate"
-  :close-on-content-click="false"
-  :nudge-right="40"
-  transition="scale-transition"
-  offset-y
-  min-width="200px"
-  max-width="300px"
-  > 
+<!-- start date component ends  -->
 
-  <template v-slot:activator="{ on }">
-      <v-text-field
-        label="End Date"
-        readonly
-        :value="fromDateDisp"
-        v-on="on"
-      ></v-text-field> 
-      <br>
-  </template> 
+  <v-layout>
+    <v-menu
+    v-model="endDate"
+    :close-on-content-click="false"
+    :nudge-right="40"
+    transition="scale-transition"
+    offset-y
+    min-width="200px"
+    max-width="300px"
+    > 
 
-      <v-date-picker
-        locale="en-in"
-        v-model="startDateVal"
-        no-title
-        @input="startDate = false"
-      ></v-date-picker>   
-      
-  </v-menu>
-</v-layout> -->
+      <template v-slot:activator="{ on }">
+          
+          <v-text-field
+            label="End Date"
+            readonly
+            :value="endDateDisp"
+            v-on="on"
+          ></v-text-field> 
+
+      </template>  
+
+        <v-date-picker
+          locale="en-in"
+          v-model="endDateVal"
+          no-title
+          @input="endDate = false"
+        ></v-date-picker>        
+
+    </v-menu>  
+  </v-layout>
+
+  <v-layout>
+    <v-menu
+    v-model="startTime"
+    :close-on-content-click="false"
+    :nudge-right="40"
+    transition="scale-transition"
+    offset-y
+    min-width="200px"
+    max-width="300px"
+    >
+      <template v-slot:activator="{ on }">
+          <v-text-field
+          label="Start Time"
+          readonly
+          :value="startTimeDisp"
+          v-on="on"
+          >
+          </v-text-field>
+      </template>
+    <!-- time -->
+      <v-time-picker
+        ampm-in-title
+        format="24hr"
+        v-model="startTimeVal"
+        @input="startTime = false"
+      >
+      </v-time-picker>
+    </v-menu>
+  </v-layout>
+
+
+  <v-layout>
+    <v-menu
+    v-model="endTime"
+    :close-on-content-click="false"
+    :nudge-right="40"
+    transition="scale-transition"
+    offset-y
+    min-width="200px"
+    max-width="300px"
+    >
+      <template v-slot:activator="{ on }">
+          <v-text-field
+          label="End Time"
+          readonly
+          :value="endTimeDisp"
+          v-on="on"
+        
+          >
+          </v-text-field>
+      </template>
+    <!-- time -->
+      <v-time-picker
+        ampm-in-title
+        format="24hr"
+        v-model="endTimeVal"
+        @input="endTime = false"
+      >
+      </v-time-picker>
+    </v-menu>
+  </v-layout>
 
 
 
 
-    <!-- <v-text-field
-      v-model="name"
-      :counter="10"
-      :rules="nameRules"
-      label="Name"
-      required
-    ></v-text-field> -->
 
-    <!-- <v-text-field
-      v-model="email"
-      :rules="emailRules"
-      label="E-mail"
-      required
-    ></v-text-field> -->
-<!-- 
-    <v-select
-      v-model="select"
-      :items="items"
-      :rules="[v => !!v || 'Item is required']"
-      label="Item"
-      required
-    ></v-select> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <v-checkbox
       v-model="checkbox"
       :rules="[v => !!v || 'You must agree to continue!']"
       label="Do you agree?"
+      @change="createJson"
       required
-    ></v-checkbox>
+    ></v-checkbox> 
 
+    {{j}}
+     
     <v-btn
       :disabled="!valid"
       color="success"
@@ -165,6 +229,13 @@
       modal: false, 
       startDateVal: null, 
       startDate: null, 
+      endDateVal: null, 
+      endDate: null ,
+      startTime: null,
+      startTimeVal: null, 
+      endTime: null, 
+      endTimeVal: null, 
+      j:'', 
     }),
 
     methods: {
@@ -177,11 +248,37 @@
       resetValidation () {
         this.$refs.form.resetValidation()
       },
+      createJson() { 
+        
+        if(this.checkbox) {
+        this.j = JSON.stringify({
+          "car": this.selectedCar, 
+          "startDate": this.startDateVal, 
+          "endDate": this.endDateVal, 
+          "stTime": this.startTimeVal, 
+          "edTime": this.endTimeVal, 
+        })
+        } else {
+          this.j=null
+        }
+
+        return this.j 
+      }
+      
     },
 
     computed: {
       fromDateDisp() {
         return this.startDateVal
+      }, 
+      endDateDisp() {
+        return this.endDateVal
+      }, 
+      startTimeDisp() {
+        return this.startTimeVal
+      }, 
+      endTimeDisp() {
+        return this.endTimeVal
       }
     }
   }
