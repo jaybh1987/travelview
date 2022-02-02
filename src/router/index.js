@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Welcome from '../views/welcome.vue'
 import Addtrip from '../views/addtrip.vue'
+import Viewpage from '../views/viewpage.vue'
 
 Vue.use(VueRouter)
 
@@ -29,6 +30,11 @@ const routes = [
     path: '/addtrip', 
     name: 'Addtrip', 
     component: Addtrip
+  }, 
+  {
+    path: '/view', 
+    name: 'View', 
+    component: Viewpage
   }
 ]
 
