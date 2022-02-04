@@ -173,6 +173,13 @@
     Reset Validation
   </v-btn>
 
+    <v-btn
+    color="warning"
+    @click="save"
+  >
+    Save
+  </v-btn>
+
   {{j}}
 </v-form> 
 
@@ -181,7 +188,9 @@
 </template>
 
 
-<script>
+<script> 
+  import axios from 'axios'; 
+
   export default {
     data: () => ({
       valid: true,
@@ -219,7 +228,7 @@
       j:'', 
     }),
 
-    methods: {
+    methods: { 
       validate () {
         this.$refs.form.validate()
         console.log('after validate.')
@@ -245,8 +254,25 @@
         }
 
         return this.j 
-      }
-      
+      }, 
+      save() { 
+
+          console.log('save fun calling ')
+          axios.post('http://localhost:3000/addtrip',{
+            body: this.j 
+          })
+          .then(
+            function(res) { 
+              console.log('try') 
+              console.log(res)
+            }
+          ).catch(
+            function (e) {
+              console.log('fail')
+              console.log(e)
+            }
+          )
+      } 
     },
 
     computed: {
