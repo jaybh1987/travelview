@@ -1,6 +1,6 @@
 <template>
 
-    <v-simple-table dark>
+    <v-simple-table >
         <template v-slot:default>
             <thead>
                 <tr>
@@ -23,8 +23,20 @@
                 <td>{{i.endDate}}</td>
                 <td>{{i.stTime}}</td>
                 <td>{{i.edTime}}</td>
-                <td>
-                        delete
+                <td>    
+                    <v-icon
+                    color="green"                
+                    >
+                        mdi-pencil-circle
+                    </v-icon>
+                    |
+                    <v-icon
+                    color="red"
+                    >
+                        mdi-delete-circle
+                    </v-icon>
+                        
+                        
                 </td>
                     
                 </tr>
