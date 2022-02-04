@@ -222,6 +222,7 @@
     methods: {
       validate () {
         this.$refs.form.validate()
+        console.log('after validate.')
       },
       reset () {
         this.$refs.form.reset()
